@@ -16,6 +16,8 @@ return require('packer').startup(function(use)
     end
   })
 
+  use 'nvim-treesitter/playground'
+
   use 'nvim-lualine/lualine.nvim'
 
   use 'lukas-reineke/indent-blankline.nvim'
@@ -46,7 +48,7 @@ return require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   -- Highlight the word under the cursor
-  use 'xiyaowong/nvim-cursorword'
+  use 'itchyny/vim-cursorword'
 
   -- LSP
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client. To know the LSP name refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#configurations
@@ -79,9 +81,19 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 
+  -- Leader key modifier
   vim.g.mapleader = " "
 
   require('gitsigns').setup({
+    signs = {
+      add          = { hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
+      change       = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
+      delete       = { hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
+      topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
+      changedelete = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
+      untracked    = { hl = 'GitSignsAdd'   , text = '!', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
+    },
+
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
 
@@ -235,7 +247,7 @@ return require('packer').startup(function(use)
         },
         glyphs = {
           default = "",
-          symlink = "➜ ",
+          symlink = "⮀ ",
           bookmark = "",
           folder = {
             arrow_closed = "⏵",
@@ -251,10 +263,10 @@ return require('packer').startup(function(use)
             unstaged = "+ ",
             staged = "✓ ",
             unmerged = "⇆ ",
-            renamed = "↪ ",
-            untracked = "~ ",
-            deleted = "× ",
-            ignored = "ø ",
+            renamed = "r ",
+            untracked = "u ",
+            deleted = "d ",
+            ignored = "i ",
           },
         },
       },
