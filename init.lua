@@ -206,6 +206,9 @@ return require('packer').startup(function(use)
         },
       },
     },
+    git = {
+      ignore = false,
+    },
     renderer = {
       group_empty = true,
       indent_markers = {
