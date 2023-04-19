@@ -9,11 +9,8 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
 
   use({
-    'denspiro/rose-pine',
+    '~/projects/rose-pine',
     as = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end
   })
 
   use 'nvim-treesitter/playground'
@@ -57,6 +54,7 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use "williamboman/mason.nvim" -- Package manager for LSP servers, DAP servers, linters, and formatters
   use 'williamboman/mason-lspconfig.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim' -- Allowing non-LSP sources to integrate with Neovim's LSP client
 
   -- Useful completion sources:
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
@@ -80,6 +78,8 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
+
+  vim.g.termguicolors = true
 
   -- Leader key modifier
   vim.g.mapleader = " "
@@ -132,6 +132,55 @@ return require('packer').startup(function(use)
       -- Text object
       map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
     end
+  })
+
+  require('rose-pine').setup({
+    --- @usage 'auto'|'main'|'moon'|'dawn'
+    variant = 'auto',
+    --- @usage 'main'|'moon'|'dawn'
+    dark_variant = 'main',
+    bold_vert_split = false,
+    dim_nc_background = false,
+    disable_background = false,
+    disable_float_background = false,
+    disable_italics = true,
+
+    --- @usage string hex value or named color from rosepinetheme.com/palette
+    groups = {
+      background = 'base',
+      background_nc = '_experimental_nc',
+      panel = 'surface',
+      panel_nc = 'base',
+      border = 'highlight_med',
+      comment = 'muted',
+      link = 'iris',
+      punctuation = 'subtle',
+
+      error = 'love',
+      hint = 'iris',
+      info = 'foam',
+      warn = 'gold',
+
+      headings = {
+        h1 = 'iris',
+        h2 = 'foam',
+        h3 = 'rose',
+        h4 = 'gold',
+        h5 = 'pine',
+        h6 = 'foam',
+      }
+      -- or set all headings at once
+      -- headings = 'subtle'
+    },
+
+    -- Change specific vim highlight groups
+    -- https://github.com/rose-pine/neovim/wiki/Recipes
+    highlight_groups = {
+      ColorColumn = { bg = 'rose' },
+
+      -- Blend colours against the "base" background
+      StatusLine = { fg = 'love', bg = 'love', blend = 10 },
+    }
   })
 
   local builtin = require('telescope.builtin')
@@ -212,11 +261,6 @@ return require('packer').startup(function(use)
     sort_by = "case_sensitive",
     view = {
       adaptive_size = true,
-      mappings = {
-        list = {
-          { key = "u", action = "dir_up" },
-        },
-      },
     },
     git = {
       ignore = false,
@@ -264,7 +308,7 @@ return require('packer').startup(function(use)
             staged = "✓ ",
             unmerged = "⇆ ",
             renamed = "♺ ",
-            untracked = "🝰 ",
+            untracked = "! ",
             deleted = "🜔 ",
             ignored = "🝯 ",
           },
@@ -272,6 +316,15 @@ return require('packer').startup(function(use)
       },
     },
   })
+
+  local function on_attach(bufnr)
+    local api = require('nvim-tree.api')
+
+    local function opts(desc)
+      return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+    vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
+  end
 
   vim.opt.list = true
   vim.opt.listchars:append "space:⋅"
@@ -285,6 +338,19 @@ return require('packer').startup(function(use)
     show_current_context = true,
     show_current_context_start = false,
   })
+
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "rust", "tsx" },
+    sync_install = false,
+    highlight = {
+      enable = true,
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
+    },
+  }
 
   -- Setting up Mason for LSP, DAP etc.
   require("mason").setup()
@@ -429,6 +495,13 @@ return require('packer').startup(function(use)
       max_type_length = nil, -- Can be integer or nil.
       max_value_lines = 100, -- Can be integer or nil.
     }
+  })
+
+  local null_ls = require("null-ls")
+  null_ls.setup({
+    sources = {
+      null_ls.builtins.formatting.prettierd,
+    },
   })
 
   -- Add additional capabilities supported by nvim-cmp
@@ -632,6 +705,7 @@ return require('packer').startup(function(use)
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     hi clear SpellBad
     hi SpellBad cterm=underline
+    colorscheme rose-pine
   ]]
 
 end)
