@@ -31,15 +31,11 @@ return require('packer').startup(function(use)
   }
 
   use 'neoclide/jsonc.vim'
-  use 'pangloss/vim-javascript'
 
   use 'ntpeters/vim-better-whitespace'
 
   -- Color highlight in CSS
   use 'chrisbra/Colorizer'
-
-  -- Highlight open and closed html tags
-  use 'Valloric/MatchTagAlways'
 
   -- Git decorations
   use 'lewis6991/gitsigns.nvim'
@@ -134,11 +130,14 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- This prevents any regressions in filetype matching and ensures that filetypes are always detected
+  vim.g.do_filetype_lua = 1
+
   require('rose-pine').setup({
     --- @usage 'auto'|'main'|'moon'|'dawn'
-    variant = 'auto',
+    variant = 'moon',
     --- @usage 'main'|'moon'|'dawn'
-    dark_variant = 'main',
+    dark_variant = 'moon',
     bold_vert_split = false,
     dim_nc_background = false,
     disable_background = false,
@@ -340,7 +339,7 @@ return require('packer').startup(function(use)
   })
 
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "rust", "tsx" },
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "rust", "tsx", "html" },
     sync_install = false,
     highlight = {
       enable = true,

@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/home/denis/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  MatchTagAlways = {
-    loaded = true,
-    path = "/home/denis/.local/share/nvim/site/pack/packer/start/MatchTagAlways",
-    url = "https://github.com/Valloric/MatchTagAlways"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/denis/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -228,11 +223,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/denis/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-javascript"] = {
-    loaded = true,
-    path = "/home/denis/.local/share/nvim/site/pack/packer/start/vim-javascript",
-    url = "https://github.com/pangloss/vim-javascript"
   },
   ["vim-surround"] = {
     loaded = true,
