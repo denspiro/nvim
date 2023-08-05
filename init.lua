@@ -18,7 +18,10 @@ return require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
 
   use 'lukas-reineke/indent-blankline.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require("nvim-treesitter.install").update { with_sync = true } end
+  }
 
   -- Git
   use 'tpope/vim-fugitive'
@@ -158,7 +161,7 @@ return require('packer').startup(function(use)
       error = 'love',
       hint = 'iris',
       info = 'foam',
-      warn = 'gold',
+      warn = 'rose',
 
       headings = {
         h1 = 'iris',
@@ -178,7 +181,7 @@ return require('packer').startup(function(use)
       ColorColumn = { bg = 'rose' },
 
       -- Blend colours against the "base" background
-      StatusLine = { fg = 'love', bg = 'love', blend = 10 },
+      StatusLine = { fg = 'love', bg = 'base', blend = 10 },
     }
   })
 
@@ -227,10 +230,10 @@ return require('packer').startup(function(use)
         {
           'diagnostics',
           symbols = {
-            error = 'E ',
-            warn = 'W ',
-            info = 'i ',
-            hint = '⚡'
+            error = 'E',
+            warn = 'W',
+            info = 'I',
+            hint = 'H'
           }
         }
       },
