@@ -1,5 +1,7 @@
 {
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "remap",
+        "packer_bootstrap"
     ]
 }
