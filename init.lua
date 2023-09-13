@@ -94,7 +94,12 @@ return require("packer").startup(function(use)
       change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
       delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
       topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-      changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+      changedelete = {
+        hl = "GitSignsChange",
+        text = "~",
+        numhl = "GitSignsChangeNr",
+        linehl = "GitSignsChangeLn",
+      },
       untracked = { hl = "GitSignsAdd", text = "!", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     },
 
@@ -441,16 +446,13 @@ return require("packer").startup(function(use)
   local null_ls = require("null-ls")
   null_ls.setup({
     sources = {
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.diagnostics.stylelint.with({
-        filetypes = { "css", "scss" },
-        condition = function(utils)
-          return utils.root_has_file({
-            ".stylelintrc.yaml",
-          })
-        end,
+      null_ls.builtins.formatting.stylua.with({
+        extra_args = {
+          "--config-path",
+          vim.fn.expand("~/user_settings/dotfiles/.config/nvim/utils/lua-config/stylua.toml"),
+        },
       }),
-      null_ls.builtins.formatting.stylelint.with({
+      null_ls.builtins.diagnostics.stylelint.with({
         filetypes = { "css", "scss" },
         condition = function(utils)
           return utils.root_has_file({
@@ -466,15 +468,18 @@ return require("packer").startup(function(use)
           })
         end,
       }),
-      null_ls.builtins.formatting.eslint_d.with({
-        filetypes = { "ts", "js" },
-        condition = function(utils)
-          return utils.root_has_file({
-            ".eslintrc.yaml",
-          })
-        end,
+      --[[
+      null_ls.builtins.formatting.prettier.with({
+        filetypes = { "ts", "js", "tsx", "jsx", "html", "scss", "css" },
+        extra_args = {
+          "--config",
+          vim.fn.expand("~/user_settings/dotfiles/.config/nvim/utils/prettier-config/.prettierrc.json"),
+        },
       }),
+      ]]
+      --
     },
+    --[[
     on_attach = function()
       vim.api.nvim_create_autocmd("BufWritePost", {
         callback = function()
@@ -482,6 +487,7 @@ return require("packer").startup(function(use)
         end,
       })
     end,
+    ]]--
   })
 
   -- Debugger settings
