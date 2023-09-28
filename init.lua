@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
   use("nvim-lualine/lualine.nvim")
 
   use("lukas-reineke/indent-blankline.nvim")
+
   use({
     "nvim-treesitter/nvim-treesitter",
     run = function()
@@ -345,13 +346,13 @@ return require("packer").startup(function(use)
   vim.opt.listchars:append("space:⋅")
   vim.opt.listchars:append("eol:↴")
 
-  require("indent_blankline").setup({
-    char = "",
-    context_char = "┃",
-    char_list = {},
-    use_treesitter = true,
-    show_current_context = true,
-    show_current_context_start = false,
+  vim.cmd [[highlight IndentBlanklineIndent guifg=#1f1d2e gui=nocombine]]
+  require("ibl").setup({
+    indent = {
+      highlight = "IndentBlanklineIndent",
+      char = "┃",
+    },
+    use_vim_indent = false,
   })
 
   require("nvim-treesitter.configs").setup({
