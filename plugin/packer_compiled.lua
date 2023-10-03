@@ -207,7 +207,7 @@ _G.packer_plugins = {
   ["rose-pine"] = {
     loaded = true,
     path = "/home/denis/.local/share/nvim/site/pack/packer/start/rose-pine",
-    url = "/home/denis/projects/rose-pine"
+    url = "https://github.com/rose-pine/neovim"
   },
   ["telescope.nvim"] = {
     loaded = true,
