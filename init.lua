@@ -8,6 +8,7 @@ end
 return require("packer").startup(function(use)
   use("nvim-tree/nvim-tree.lua")
   use("tpope/vim-surround")
+  use("nvim-neotest/nvim-nio")
 
   use({ "rose-pine/neovim", as = "rose-pine" })
 
@@ -166,11 +167,13 @@ return require("packer").startup(function(use)
     variant = "auto",
     --- @usage 'main'|'moon'|'dawn'
     dark_variant = "main",
-    bold_vert_split = false,
-    dim_nc_background = false,
-    disable_background = false,
-    disable_float_background = false,
-    disable_italics = true,
+    dim_inactive_windows = false,
+
+    styles = {
+      bold_vert_split = false,
+      italic = false,
+      transparency = true,
+    },
 
     --- @usage string hex value or named color from rosepinetheme.com/palette
     groups = {
@@ -214,6 +217,13 @@ return require("packer").startup(function(use)
       -- you can set the inherit option:
       -- Search = { bg = 'gold', inherit = false },
     },
+  })
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    -- Use a sharp border with `FloatBorder` highlights
+    border = "single",
+    -- add the title in hover float window
+    title = "hover",
   })
 
   local builtin = require("telescope.builtin")
@@ -397,7 +407,14 @@ return require("packer").startup(function(use)
   require("mason-lspconfig").setup({
     -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
     -- This setting has no relation with the `automatic_installation` setting.
-    ensure_installed = { "rust_analyzer", "angularls", "tsserver", "bashls", "sqlls" },
+    ensure_installed = {
+      "rust_analyzer",
+      "angularls",
+      "tsserver",
+      "bashls",
+      "sqlls",
+      "tailwindcss",
+    },
 
     -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
     -- This setting has no relation with the `ensure_installed` setting.
@@ -449,6 +466,20 @@ return require("packer").startup(function(use)
     -- ["rust_analyzer"] = function ()
     --    require("rust-tools").setup {}
     -- end
+    ["tailwindcss"] = function()
+      require("lspconfig").tailwindcss.setup({
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+              },
+            },
+          },
+        },
+      })
+    end,
   })
 
   vim.g.ale_fixers = {
@@ -472,9 +503,9 @@ return require("packer").startup(function(use)
     ["scss"] = { "eslint" },
     ["css"] = { "eslint" },
     ["json"] = { "eslint" },
-    ["lua"] = { "stylua" },
   }
 
+  vim.g.ale_lua_stylua_executable = "stylua"
   vim.g.ale_fix_on_save = 1
   vim.g.ale_linters_explicit = 1
   vim.g.ale_echo_cursor = 0
