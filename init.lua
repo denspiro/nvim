@@ -222,8 +222,6 @@ return require("packer").startup(function(use)
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     -- Use a sharp border with `FloatBorder` highlights
     border = "single",
-    -- add the title in hover float window
-    title = "hover",
   })
 
   local builtin = require("telescope.builtin")
