@@ -1,7 +1,13 @@
 {
-    "diagnostics.globals": [
-        "vim",
-        "remap",
-        "packer_bootstrap"
-    ]
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "diagnostics.globals": [
+    "vim",
+    "remap",
+    "packer_bootstrap",
+    "use"
+  ],
+  "Lua.diagnostics.globals": [
+    "lfs"
+  ],
+  "Lua.workspace.checkThirdParty": false
 }
