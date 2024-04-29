@@ -21,7 +21,6 @@ return require("packer").startup(function()
       require("nvim-autopairs").setup({})
     end,
   })
-  use("tpope/vim-surround") -- Add "", '', (),
 
   -- Debugger
   use("mfussenegger/nvim-dap")
@@ -49,7 +48,6 @@ return require("packer").startup(function()
   use("ntpeters/vim-better-whitespace") -- Highlight all trailing whitespace characters
   use("chrisbra/Colorizer") -- Color highlight in CSS
   use("RRethy/vim-illuminate") -- Highlight other uses of word under cursor
-  use("lukas-reineke/headlines.nvim") -- highlights headlines for markdown, other txt files
 
   -- Language Support
   use("neovim/nvim-lspconfig") -- Collection of common configurations for the Nvim LSP client
@@ -76,16 +74,10 @@ return require("packer").startup(function()
 
   -- Performance
   use("nvim-neotest/nvim-nio") -- Asynchronous IO in Neovim
-  use("lewis6991/impatient.nvim") -- Makes neovim faster
 
   -- UI
   use({ "rose-pine/neovim", as = "rose-pine" }) -- theme
-  use({
-    "goolord/alpha-nvim", -- fast and fully programmable greeter
-    config = function()
-      require("alpha").setup(require("alpha.themes.dashboard").config)
-    end,
-  })
+  use("goolord/alpha-nvim") -- fast and fully programmable greeter
   use("j-hui/fidget.nvim") -- shows status of nvim-lsp progress
   use("nvim-lualine/lualine.nvim") -- Statusline
   use("nvim-lua/popup.nvim") -- Poup for telescope

@@ -7,6 +7,7 @@ require("trouble").setup({
   auto_preview = false,
   fold_open = "⏷",
   fold_closed = "⏵",
+  icons = false,
   signs = {
     -- icons / text used for a diagnostic
     error = "E",

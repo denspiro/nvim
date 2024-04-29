@@ -5,7 +5,7 @@
 -- lhs (the custom keybinds you need)
 -- rhs (the commands or existing keybinds to customise)
 -- opts (additional options like <silent>/<noremap>, see :h map-arguments for more info on it)
-function map(mode, lhs, rhs, opts)
+local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
@@ -80,7 +80,7 @@ map("n", "<leader>fk", ":lua require('telescope.builtin').keymaps()<cr>")
 
 map("n", "<leader>fc", ":lua require('telescope.builtin').commands()<cr>")
 map("n", "<leader>fch", ":lua require('telescope.builtin').command_history()<cr>")
-map("n", "<leader>fo", ":lua require('telescope.builtin').search_history()<cr>")
+map("n", "<leader>fo", ":lua require('telescope.builtin').oldfiles()<cr>")
 map("n", "<leader>fmp", ":lua require('telescope.builtin').man_pages()<cr>")
 map("n", "<leader>fgc", ":lua require('telescope.builtin').git_commits()<cr>")
 map("n", "<leader>fgb", ":lua require('telescope.builtin').git_branches()<cr>")
