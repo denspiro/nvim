@@ -30,6 +30,7 @@ require("plugins.completion.cmp")
 require("plugins.debugger.dap")
 
 require("plugins.folding.indent-blankline")
+require("plugins.folding.nvim-ufo")
 
 require("plugins.git.gitsigns")
 
