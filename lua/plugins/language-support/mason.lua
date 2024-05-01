@@ -1,15 +1,5 @@
 --[[ mason.lua ]]
 
-local servers = {
-  rust_analyzer = {
-    ["rust-analyzer"] = {
-      checkOnSave = {
-        command = "clippy",
-      },
-    },
-  },
-}
-
 require("mason").setup({})
 require("mason-lspconfig").setup({
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
@@ -70,9 +60,13 @@ require("mason-lspconfig").setup_handlers({
   end,
   -- Next, you can provide a dedicated handler for specific servers.
   -- For example, a handler override for the `rust_analyzer`:
-  -- ["rust_analyzer"] = function ()
-  --    require("rust-tools").setup {}
-  -- end
+  ["rust_analyzer"] = function()
+    require("rust-tools").setup({
+      checkOnSave = {
+        command = "clippy",
+      },
+    })
+  end,
   ["tailwindcss"] = function()
     require("lspconfig").tailwindcss.setup({
       settings = {
