@@ -1,5 +1,3 @@
---[[ trouble.lua ]]
-
 require("trouble").setup({
   position = "right",
   width = 75,

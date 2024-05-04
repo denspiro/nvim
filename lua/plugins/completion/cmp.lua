@@ -17,7 +17,7 @@ cmp.setup({
       col_offset = 3,
       side_padding = 1,
     },
-    documentation = cmp.config.window.bordered(),
+    documentation = { cmp.config.window.bordered() },
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),

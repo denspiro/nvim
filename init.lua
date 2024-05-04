@@ -8,15 +8,15 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap =
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+      fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 end
 
-require("plugins.packer") -- Install plugins
+require("plugins.packer")       -- Install plugins
 require("plugins.ui.rose-pine") -- Initialize theme
 
-require("vars") -- Variables
-require("opts") -- Options
-require("keys") -- Keymaps
+require("vars")                 -- Variables
+require("opts")                 -- Options
+require("keys")                 -- Keymaps
 
 -- Setup plugins
 require("plugins.ui.lualine")
@@ -36,11 +36,13 @@ require("plugins.git.gitsigns")
 
 require("plugins.highlights.nvim-treesitter")
 
-require("plugins.language-support.mason")
-require("plugins.language-support.ale")
 
 require("plugins.navigation.nvim-tree")
 require("plugins.navigation.outline")
 require("plugins.navigation.hop")
 require("plugins.navigation.trouble")
 require("plugins.navigation.telescope")
+
+require("plugins.language-support.mason")
+require("plugins.language-support.conform")
+require("plugins.language-support.nvim-lint") -- This should stay last one because of initialization issues

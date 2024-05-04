@@ -1,5 +1,3 @@
---[[ outline.lua ]]
-
 require("outline").setup({
   symbols = {
     icon_fetcher = function(kind)
