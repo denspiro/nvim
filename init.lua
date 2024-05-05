@@ -33,6 +33,7 @@ require("plugins.folding.indent-blankline")
 require("plugins.folding.nvim-ufo")
 
 require("plugins.git.gitsigns")
+require("plugins.git.diffview")
 
 require("plugins.highlights.nvim-treesitter")
 

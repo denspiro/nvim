@@ -12,12 +12,8 @@ cmp.setup({
     end,
   },
   window = {
-    completion = {
-      winhighlight = "Normal:CmpNormal",
-    },
-    documentation = {
-      winhighlight = "Normal:CmpDocNormal",
-    },
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),

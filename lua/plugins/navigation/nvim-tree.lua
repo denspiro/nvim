@@ -22,7 +22,7 @@ require("nvim-tree").setup({
     icons = {
       webdev_colors = true,
       git_placement = "before",
-      padding = "",
+      padding = " ",
       symlink_arrow = " → ",
       show = {
         file = true,
@@ -45,13 +45,13 @@ require("nvim-tree").setup({
           symlink_open = "",
         },
         git = {
-          unstaged = "+ ",
-          staged = "✓ ",
+          unstaged = "+",
+          staged = "✓",
           unmerged = "⇆ ",
           renamed = "♺ ",
-          untracked = "! ",
-          deleted = "🜔 ",
-          ignored = "i ",
+          untracked = "!",
+          deleted = "🜔",
+          ignored = "i",
         },
       },
     },

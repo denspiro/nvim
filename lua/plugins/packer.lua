@@ -16,20 +16,20 @@ return require("packer").startup(function()
   use("L3MON4D3/LuaSnip")         -- snippets for completion
   use("saadparwaiz1/cmp_luasnip") -- snippets for completion'
   use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    "kylechui/nvim-surround",     -- Surround selections
+    tag = "*",                    -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup({})
     end,
-  }) -- Surround selections
+  })
   use({
-    "altermo/ultimate-autopair.nvim",
+    "altermo/ultimate-autopair.nvim", -- Autopair on insert ( { "" } )
     event = { "InsertEnter", "CmdlineEnter" },
-    branch = "v0.6", --recommended as each new version will have breaking changes
+    branch = "v0.6",                  --recommended as each new version will have breaking changes
     config = function()
       require("ultimate-autopair").setup({})
     end,
-  }) -- Autopair on insert ( { "" } )
+  })
 
   -- Debugger
   use("mfussenegger/nvim-dap")
@@ -40,16 +40,18 @@ return require("packer").startup(function()
   use("lukas-reineke/indent-blankline.nvim")                                -- ident lines
 
   -- Git
-  use("tpope/vim-fugitive")                                             -- integrates Git into Vim, allowing Git commands to be executed within the editor
-  use("Xuyuanp/nerdtree-git-plugin")                                    -- indicating file states like staged, unstaged, modified, or deleted directly within the NERDTree file explorer
-  use("lewis6991/gitsigns.nvim")                                        -- git decorations in editor
-  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }) -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+  use("Xuyuanp/nerdtree-git-plugin") -- indicating file states like staged, unstaged, modified, or deleted directly within the NERDTree file explorer
+  use("lewis6991/gitsigns.nvim")     -- git decorations in editor
   use({
-    "NeogitOrg/neogit",
+    "sindrets/diffview.nvim",        -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+    requires = "nvim-lua/plenary.nvim",
+  })
+  use({
+    "NeogitOrg/neogit",         -- Git interface for neovim
     requires = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
-      "nvim-telescope/telescope.nvim", -- optional
+      "nvim-lua/plenary.nvim",  -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       require("neogit").setup({})
@@ -79,17 +81,19 @@ return require("packer").startup(function()
   use("williamboman/mason.nvim")           -- Manage LSPs and DAPs
   use("williamboman/mason-lspconfig.nvim") -- closes gaps with mason
   use({
-    "saecki/crates.nvim",
+    "saecki/crates.nvim",                  -- Help managing crates dependencies
     config = function()
       require("crates").setup({})
     end,
-  })                           -- Help managing crates dependencies
+  })
   use("mrcjkb/rustaceanvim")   -- rust-analyzer hints and more!
   use("nvim-lua/plenary.nvim") -- Collection of Lua functions
   use("stevearc/conform.nvim") -- Formatter
   use({
     "mfussenegger/nvim-lint",  -- Linter
     config = function()
+      -- Have to do the setup here because doing it in the dedicated file
+      -- is difficult most probably because this plugin is optional and not always present
       require("lint").linters_by_ft = {
         javascript = { "eslint_d" },
         typescript = { "eslint_d" },
@@ -127,4 +131,5 @@ return require("packer").startup(function()
   use("j-hui/fidget.nvim")                      -- shows status of nvim-lsp progress
   use("nvim-lualine/lualine.nvim")              -- Statusline
   use("nvim-lua/popup.nvim")                    -- Poup for telescope
+  use("nvim-tree/nvim-web-devicons")
 end)

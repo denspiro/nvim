@@ -13,6 +13,12 @@ require("rose-pine").setup({
     transparency = true,
   },
 
+  enable = {
+    terminal = true,
+    legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+    migrations = true, -- Handle deprecated options automatically
+  },
+
   --- @usage string hex value or named color from rosepinetheme.com/palette
   groups = {
     background = "base",
@@ -28,6 +34,19 @@ require("rose-pine").setup({
     hint = "iris",
     info = "foam",
     warn = "gold",
+    note = "pine",
+    todo = "rose",
+
+    git_add = "foam",
+    git_change = "rose",
+    git_delete = "love",
+    git_dirty = "rose",
+    git_ignore = "muted",
+    git_merge = "iris",
+    git_rename = "pine",
+    git_stage = "iris",
+    git_text = "rose",
+    git_untracked = "subtle",
 
     headings = {
       h1 = "iris",
@@ -51,9 +70,6 @@ require("rose-pine").setup({
     NonText = { fg = "#a6258d" },
     IlluminatedWordText = { bg = "overlay" },
     IlluminatedWordRead = { bg = "#38195d" },
-    Pmenu = { bg = "surface" },
-    CmpNormal = { bg = "surface" },
-    CmpDocNormal = { bg = "surface" },
     -- By default each group adds to the existing config.
     -- If you only want to set what is written in this config exactly,
     -- you can set the inherit option:
