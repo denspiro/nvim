@@ -51,8 +51,9 @@ require("rose-pine").setup({
     NonText = { fg = "#a6258d" },
     IlluminatedWordText = { bg = "overlay" },
     IlluminatedWordRead = { bg = "#38195d" },
-    --IlluminatedWordWrite = { bg = "#38195d" },
-
+    Pmenu = { bg = "surface" },
+    CmpNormal = { bg = "surface" },
+    CmpDocNormal = { bg = "surface" },
     -- By default each group adds to the existing config.
     -- If you only want to set what is written in this config exactly,
     -- you can set the inherit option:

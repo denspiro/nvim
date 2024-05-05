@@ -13,11 +13,11 @@ cmp.setup({
   },
   window = {
     completion = {
-      cmp.config.window.bordered(),
-      col_offset = 3,
-      side_padding = 1,
+      winhighlight = "Normal:CmpNormal",
     },
-    documentation = { cmp.config.window.bordered() },
+    documentation = {
+      winhighlight = "Normal:CmpDocNormal",
+    },
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),

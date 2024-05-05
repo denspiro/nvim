@@ -59,6 +59,17 @@ require("mason-lspconfig").setup_handlers({
   -- Next, you can provide a dedicated handler for specific servers.
   -- For example, a handler override for the `rust_analyzer`:
   ["rust_analyzer"] = function() end,
+  ["lua_ls"] = function()
+    require("lspconfig").lua_ls.setup({
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = "Replace",
+          },
+        },
+      },
+    })
+  end,
   ["tailwindcss"] = function()
     require("lspconfig").tailwindcss.setup({
       settings = {

@@ -83,6 +83,7 @@ require("dapui").setup({
         "breakpoints",
         "stacks",
         "watches",
+        "console",
       },
       size = 60,
       position = "right",
@@ -90,7 +91,6 @@ require("dapui").setup({
     {
       elements = {
         "repl",
-        "console",
       },
       size = 0.25, -- 25% of total lines
       position = "bottom",

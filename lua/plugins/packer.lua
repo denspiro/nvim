@@ -15,7 +15,6 @@ return require("packer").startup(function()
   use("hrsh7th/cmp-buffer")       -- Useful completion sources
   use("L3MON4D3/LuaSnip")         -- snippets for completion
   use("saadparwaiz1/cmp_luasnip") -- snippets for completion'
-  use("folke/neodev.nvim")
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -103,6 +102,7 @@ return require("packer").startup(function()
       }
     end,
   })
+  use("folke/neodev.nvim") -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API
 
   -- Navigation
   use({
