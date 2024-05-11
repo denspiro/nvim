@@ -1,5 +1,6 @@
 require("telescope").setup({
   defaults = {
+    color_devicons = false,
     file_ignore_patterns = {
       "^./.git/",
       "^./target/",

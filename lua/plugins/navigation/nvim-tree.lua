@@ -20,12 +20,12 @@ require("nvim-tree").setup({
       },
     },
     icons = {
-      webdev_colors = true,
+      webdev_colors = false,
       git_placement = "before",
       padding = " ",
       symlink_arrow = " → ",
       show = {
-        file = true,
+        file = false,
         folder = true,
         folder_arrow = true,
         git = true,
