@@ -46,6 +46,7 @@ return require("packer").startup(function()
     "sindrets/diffview.nvim", -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
     requires = "nvim-lua/plenary.nvim",
   })
+  use({ "tpope/vim-fugitive" })
   use({
     "NeogitOrg/neogit", -- Git interface for neovim
     requires = {

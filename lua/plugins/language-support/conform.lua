@@ -1,4 +1,4 @@
-require('conform').setup({
+require("conform").setup({
   formatters_by_ft = {
     javascript = { "prettierd" },
     typescript = { "prettierd" },
@@ -12,7 +12,7 @@ require('conform').setup({
   },
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 50,
+    timeout_ms = 10000,
     lsp_fallback = true,
   },
 })
