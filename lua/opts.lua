@@ -151,11 +151,6 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 ]])
 
--- Set the color scheme to rose-pine
-vim.cmd([[
-colorscheme rose-pine
-]])
-
 -- Customize the appearance of indentation lines in the editor
 -- Set the foreground color of the BlanklineIndent highlight group to a dark gray color (#1f1d2e)
 -- Ensure that the highlight does not combine with other highlights for clarity
@@ -185,7 +180,7 @@ vim.diagnostic.config({
   severity_sort = true,
   float = {
     border = "single",
-    source = "always",
+    source = true,
     header = "",
     prefix = "- ",
   },
