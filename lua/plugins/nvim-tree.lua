@@ -12,11 +12,11 @@ return {
     renderer = {
       group_empty = true,
       indent_markers = {
-        enable = false,
+        enable = true,
         inline_arrows = true,
         icons = {
           corner = "",
-          edge = "",
+          edge = "│",
           item = "",
           bottom = "",
           none = "",
