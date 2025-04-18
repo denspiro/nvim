@@ -29,8 +29,9 @@ return {
       ensure_installed = {
         "prettierd",
         "stylua", -- lua formatter
-        "isort", -- python formatter
-        "black", -- python formatter
+        "isort",  -- python formatter
+        "black",  -- python formatter
+        "shfmt",  -- bash script formatter
         "eslint_d",
       },
     })

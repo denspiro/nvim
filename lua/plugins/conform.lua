@@ -16,6 +16,7 @@ return {
       lua = { "stylua" },
       rust = { "rustfmt" },
       c = { "clang-format" },
+      sh = { "shfmt" },
     },
     format_on_save = {
       -- These options will be passed to conform.format()
