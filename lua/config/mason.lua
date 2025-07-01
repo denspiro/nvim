@@ -1,23 +1,22 @@
-local handlers = {
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
-  function(server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup({})
-  end,
-  -- Next, you can provide targeted overrides for specific servers.
-  ["lua_ls"] = function()
-    require("lspconfig").lua_ls.setup({
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
+-- Configure a server via `vim.lsp.config()` or `{after/}lsp/lua_ls.lua`
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = {
+          "vim",
+          "require",
         },
       },
-    })
-  end,
-}
+    },
+  },
+})
 
--- Pass handlers when setting up mason-lspconfig:
-require("mason-lspconfig").setup_handlers(handlers)
+require("mason").setup()
+-- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls" },
+})
