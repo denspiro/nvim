@@ -132,8 +132,8 @@ map("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 map("n", "gs", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 map("n", "gw", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 
-map("n", "g[", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-map("n", "g]", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+map("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+map("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")

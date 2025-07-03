@@ -18,7 +18,7 @@ return {
         "jsonls",
         "tailwindcss",
         "rust_analyzer",
-        "ts_ls",
+        "typescript-language-server",
         "bashls",
         "sqlls",
         "lua_ls",
