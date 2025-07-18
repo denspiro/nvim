@@ -13,8 +13,8 @@ return {
       automatic_installation = true,
       ensure_installed = {
         "cssls",
-        "eslint",
         "html",
+        "eslint-lsp",
         "jsonls",
         "tailwindcss",
         "rust_analyzer",
@@ -29,9 +29,9 @@ return {
       ensure_installed = {
         "prettierd",
         "stylua", -- lua formatter
-        "isort",  -- python formatter
-        "black",  -- python formatter
-        "shfmt",  -- bash script formatter
+        "isort", -- python formatter
+        "black", -- python formatter
+        "shfmt", -- bash script formatter
         "eslint_d",
       },
     })
